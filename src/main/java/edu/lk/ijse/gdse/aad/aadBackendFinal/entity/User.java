@@ -3,10 +3,7 @@ package edu.lk.ijse.gdse.aad.aadBackendFinal.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
@@ -15,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Table(name = "user")
+@Builder
 public class User {
 
 

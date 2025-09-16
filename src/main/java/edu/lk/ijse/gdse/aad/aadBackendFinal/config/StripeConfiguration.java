@@ -8,8 +8,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class StripeConfiguration {
 
+
+/*
     @Value("${stripe.secret}")
     private String stripeSecret;
+
+    */
 
 
     @PostConstruct
