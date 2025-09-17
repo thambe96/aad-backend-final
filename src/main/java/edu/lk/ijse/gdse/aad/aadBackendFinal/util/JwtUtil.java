@@ -1,15 +1,22 @@
 package edu.lk.ijse.gdse.aad.aadBackendFinal.util;
 
 
+import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.User;
+import edu.lk.ijse.gdse.aad.aadBackendFinal.repo.UserRepo;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
 public class JwtUtil {
 
     @Value("${jwt.expiration}")
@@ -18,8 +25,29 @@ public class JwtUtil {
     @Value("${jwt.secret}")
     private String secretKey;
 
+    private final UserRepo userRepo;
+
+
     public String generateToken(String username) {
+
+        Optional<User> userOptional = userRepo.findByName(username);
+
+       User user = userOptional.orElse(null);
+
+
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", user.getRole());
+        claims.put("email", user.getEmail());
+
+        if (user.getUserImage() != null) {
+            claims.put("userImageUrl", user.getUserImage().getImageUrl());
+        } else {
+            claims.put("userImageUrl", "");
+        }
+
+
         return Jwts.builder()
+                .setClaims(claims)
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date
