@@ -38,6 +38,7 @@ public class JwtUtil {
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", user.getRole());
         claims.put("email", user.getEmail());
+        claims.put("id", user.getId());
 
         if (user.getUserImage() != null) {
             claims.put("userImageUrl", user.getUserImage().getImageUrl());
