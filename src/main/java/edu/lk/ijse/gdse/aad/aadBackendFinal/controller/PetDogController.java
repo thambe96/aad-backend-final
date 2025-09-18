@@ -1,5 +1,7 @@
 package edu.lk.ijse.gdse.aad.aadBackendFinal.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.dto.ApiResponse;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.dto.PetDogDTO;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.dto.TestDTO;
@@ -7,6 +9,7 @@ import edu.lk.ijse.gdse.aad.aadBackendFinal.service.PetDogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,17 +23,58 @@ public class PetDogController {
 
     private final PetDogService petDogService;
 
+    @PostMapping("/createPetDogTest")
+    @PreAuthorize("hasRole('PET_OWNER')")
+    public ResponseEntity<ApiResponse> testCreatePetDog(
+            @RequestPart("images") List<MultipartFile> images,
+            @RequestPart("details") String detailsJson) throws JsonProcessingException {
+
+
+        System.out.println("📥 Raw details JSON: " + detailsJson);
+
+        // try manual conversion
+        ObjectMapper mapper = new ObjectMapper();
+        PetDogDTO petDogDTO = mapper.readValue(detailsJson, PetDogDTO.class);
+
+        petDogDTO.setImages(images);
+
+//JSON: {"dogName":"Bravo","dogBreed":"Labrador","dogAge":"5","owner":{"id":"1","name":"","age":25,"gender":"Male","email":"","role":""}}
+
+
+        System.out.println("This Create pet Dog Controller Works fine!!");
+        System.out.println(images.size());
+        System.out.println(images.get(0).getOriginalFilename());
+
+        System.out.println(petDogDTO);
+
+//
+//
+//        petDogDTO.setImages(images);
+//
+        petDogService.savePetDog(petDogDTO);
+//
+//
+//
+
+
+        return new ResponseEntity<>(new ApiResponse(200, "ok", "Success hitting here!!"), HttpStatus.OK);
+    }
+
+
     @PostMapping("/createPetDog")
+    @PreAuthorize("hasRole('PET_OWNER')")
     public ResponseEntity<ApiResponse> createPetDog(
             @RequestPart("images") List<MultipartFile> images,
             @RequestPart("details") PetDogDTO petDogDTO) {
+
+        System.out.println("This Create pet Dog Controller Works fine!!");
 
         petDogDTO.setImages(images);
 
         petDogService.savePetDog(petDogDTO);
 
 
-        return null;
+        return new ResponseEntity<>(new ApiResponse(200, "ok", null), HttpStatus.OK);
     }
 
 

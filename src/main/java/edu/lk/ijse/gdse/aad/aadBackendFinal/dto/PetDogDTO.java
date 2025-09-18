@@ -13,6 +13,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Data
+@NoArgsConstructor
 public class PetDogDTO {
 
     private int dogId;
