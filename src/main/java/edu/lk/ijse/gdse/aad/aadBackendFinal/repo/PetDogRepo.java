@@ -5,9 +5,11 @@ import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.PetDogImage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+// @ -> annotation was added later
+@Repository
 public interface PetDogRepo extends JpaRepository<PetDog, Integer> {
 
 
