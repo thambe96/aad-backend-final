@@ -48,5 +48,10 @@ public class TreatmentRequest {
     private List<Donation> donations;
 
 
+    @OneToMany(mappedBy = "treatmentRequest", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference("treatmentReq-health-record")
+    private List<HealthRecord> healthRecords;
+
+
 
 }
