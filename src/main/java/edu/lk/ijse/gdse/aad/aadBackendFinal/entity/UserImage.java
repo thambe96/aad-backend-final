@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 @AllArgsConstructor
@@ -20,6 +21,7 @@ public class UserImage {
     private String publicId;
 
     @OneToOne(mappedBy = "userImage")
+    @ToString.Exclude
     private User user;
 
 }

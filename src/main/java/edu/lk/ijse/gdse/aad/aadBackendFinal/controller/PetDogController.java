@@ -106,7 +106,10 @@ public class PetDogController {
 
 
 
+
+//    @PreAuthorize("hasRole('PET_OWNER')")
     @GetMapping("/user/{userId}")
+    @PreAuthorize("hasRole('PET_OWNER')")
     public ResponseEntity<ApiResponse> getAllPetDogsBelongToUser(@PathVariable Integer userId) {
 
         List<PetDogDTO> petDogDTOS = petDogService.getAllPetDogsUserBelong(userId);
@@ -118,6 +121,12 @@ public class PetDogController {
         return new ResponseEntity<>(new ApiResponse(200, "ok", petDogDTOS), HttpStatus.OK);
     }
 
+
+
+
+
+
+
     @PutMapping("/updatePetDog")
     public ResponseEntity<ApiResponse> updatePetDog(
             @RequestBody PetDogDTO petDogDTO) {
@@ -125,6 +134,8 @@ public class PetDogController {
         petDogService.updatePetDog(petDogDTO);
         return ResponseEntity.ok(new ApiResponse(HttpStatus.OK.value(), "Pet dog Updated", null));
     }
+
+
 
 
 

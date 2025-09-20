@@ -22,9 +22,9 @@ public class HealthRecordController {
     @GetMapping("/saveHealthRecords")
     public String saveHealthRecords(@PathVariable Integer treatmentReqId, @RequestParam("healthRecords") List<MultipartFile> file) {
 
-        String result = healthRecordService.uploadHealthRecords(treatmentReqId, file);
+//        String result = healthRecordService.uploadHealthRecords(treatmentReqId, file);
 
-        System.out.println(result);
+//        System.out.println(result);
 
         return null;
     }

@@ -2,10 +2,13 @@ package edu.lk.ijse.gdse.aad.aadBackendFinal.controller;
 
 import edu.lk.ijse.gdse.aad.aadBackendFinal.dto.ApiResponse;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.dto.TreatmentRequestDTO;
+import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.PetDog;
+import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.TreatmentReqStatus;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.service.TreatmentRequestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,13 +21,68 @@ public class TreatmentRequestController {
 
     private final TreatmentRequestService treatmentRequestService;
 
+
     @PostMapping("/createTreatmentRequest")
-    public ResponseEntity<ApiResponse> createTreatmentRequest(@RequestBody TreatmentRequestDTO treatmentRequestDTO) {
+    public ResponseEntity<ApiResponse> createTreatmentRequest(
+
+
+
+            @RequestParam String treatmentName,
+            @RequestParam String treatmentDescription,
+            @RequestParam double treatmentPrice,
+            @RequestParam String requestStatus,
+            @RequestParam int dogId,
+            @RequestParam String dogName,
+            @RequestParam String dogBreed,
+            @RequestParam int dogAge
+
+
+
+
+    ) {
+
+
+
+        // Create DTO manually
+
+
+        TreatmentRequestDTO treatmentRequestDTO = new TreatmentRequestDTO();
+        treatmentRequestDTO.setTreatmentName(treatmentName);
+        treatmentRequestDTO.setTreatmentDescription(treatmentDescription);
+        treatmentRequestDTO.setTreatmentPrice(treatmentPrice);
+        treatmentRequestDTO.setRequestStatus(TreatmentReqStatus.valueOf(requestStatus));
+
+        PetDog petDog = new PetDog();
+        petDog.setDogId(dogId);
+        petDog.setDogName(dogName);
+        petDog.setDogBreed(dogBreed);
+        petDog.setDogAge(dogAge);
+
+        treatmentRequestDTO.setPetDog(petDog);
+        treatmentRequestDTO.setCollectedAmount(0.0);
+
+
+
+
+
+
+
 
         String result =  treatmentRequestService.createTreatmentRequest(treatmentRequestDTO);
 
+//        String result = "Success!!";
+
+//        System.out.println("Hi HI this works fine");
+
         return ResponseEntity.ok(new ApiResponse(HttpStatus.CREATED.value(), "ok", result));
     }
+
+
+
+
+
+
+
 
     @GetMapping("/getRequestbyId/{requestId}")
     public ResponseEntity<ApiResponse> getRequestById(@PathVariable("requestId") int requestId) {

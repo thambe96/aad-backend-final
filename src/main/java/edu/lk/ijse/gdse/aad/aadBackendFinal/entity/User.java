@@ -32,6 +32,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_image_id", referencedColumnName = "id")
     @JsonBackReference("user-image")
+    @ToString.Exclude
     private UserImage userImage;
 
 
@@ -47,6 +48,8 @@ public class User {
 
     @OneToMany(mappedBy = "donator", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Donation> donations;
+
+
 
 
 

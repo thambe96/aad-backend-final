@@ -4,10 +4,11 @@ import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.PetDog;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.TreatmentReqStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @Data
-
+@NoArgsConstructor
 
 public class TreatmentRequestDTO {
 
