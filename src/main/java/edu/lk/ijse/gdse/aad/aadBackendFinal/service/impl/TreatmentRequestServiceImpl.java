@@ -30,6 +30,8 @@ public class TreatmentRequestServiceImpl implements TreatmentRequestService {
         return "Treatment Request Created Successfully";
     }
 
+
+
     @Override
     public TreatmentRequestDTO getTreatmentRequestbyId(int requestId) {
 
@@ -52,9 +54,17 @@ public class TreatmentRequestServiceImpl implements TreatmentRequestService {
         return treatmentRequestDTO;
     }
 
-    @Override
-    public List<TreatmentRequestDTO> getAllTreatmentRequestsByUserId(int userId) {
 
+
+
+
+
+
+    @Override
+    public List<RequestPetCardDTO> getAllTreatmentRequestsByUserId(int userId) {
+
+
+        /*
         List<TreatmentRequest> treatmentRequests = treatmentRequestRepo.getAllRequestByUserId(userId);
 
         List<TreatmentRequestDTO> treatmentRequestDTOS = new ArrayList<>();
@@ -71,8 +81,57 @@ public class TreatmentRequestServiceImpl implements TreatmentRequestService {
             treatmentRequestDTOS.add(treatmentRequestDTO);
         }
 
-        return treatmentRequestDTOS;
+         */
+
+
+
+        List<Object[]> results = treatmentRequestRepo.getAllRequestByUserId(userId);
+
+
+        List<RequestPetCardDTO> allRequestDtos = results.stream().map(r ->
+                new RequestPetCardDTO(
+                        (Integer) r[0],
+                        (String) r[1],
+                        (Double) r[2],
+                        (String) r[3],
+                        (Double) r[4],
+                        (Integer) r[5],
+                        (String) r[6],
+                        (String) r[7],
+                        (String) r[8])).toList();
+
+
+
+/*
+        for (RequestPetCardDTO dto : dtos) {
+            System.out.println(dto.getRequestName());
+            System.out.println(dto.getRequestStatus());
+            System.out.println(dto.getRequestId());
+            System.out.println(dto.getPetImageUrl());
+        }
+        */
+
+
+        return allRequestDtos;
+
+
+
+//        return treatmentRequestDTOS;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public String updateTreatmentRequest(TreatmentRequestDTO treatmentRequestDTO) {

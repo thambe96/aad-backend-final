@@ -12,7 +12,7 @@ public interface TreatmentRequestService {
 
     TreatmentRequestDTO getTreatmentRequestbyId(int requestId);
 
-    List<TreatmentRequestDTO> getAllTreatmentRequestsByUserId(int userId);
+    List<RequestPetCardDTO> getAllTreatmentRequestsByUserId(int userId);
 
     String updateTreatmentRequest(TreatmentRequestDTO treatmentRequestDTO);
     String deleteTreatmentRequest(int requestId);

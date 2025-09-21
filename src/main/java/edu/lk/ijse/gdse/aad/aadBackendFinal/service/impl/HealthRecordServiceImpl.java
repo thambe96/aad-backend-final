@@ -5,6 +5,7 @@ import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.HealthRecord;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.PetDogImage;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.TreatmentRequest;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.exception.ResourceNotFoundException;
+import edu.lk.ijse.gdse.aad.aadBackendFinal.repo.HealthRecordRepo;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.repo.TreatmentRequestRepo;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.service.CloudinaryService;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.service.HealthRecordService;
@@ -23,6 +24,7 @@ public class HealthRecordServiceImpl implements HealthRecordService {
 
     private final CloudinaryService cloudinaryService;
     private final TreatmentRequestRepo treatmentRequestRepo;
+    private final HealthRecordRepo healthRecordRepo;
 
 
 
@@ -37,7 +39,7 @@ public class HealthRecordServiceImpl implements HealthRecordService {
         );
 
 
-        // A list from HealthRecord entity
+
         List<HealthRecord> healthRecordList = new ArrayList<>();
 
 
@@ -48,30 +50,20 @@ public class HealthRecordServiceImpl implements HealthRecordService {
                 String imageUrl = uploadResult.get("secure_url").toString();
                 String publicId = uploadResult.get("public_id").toString();
 
+                System.out.println(imageUrl);
+                System.out.println(publicId);
+
                 HealthRecord healthRecord = new HealthRecord();
 
                 healthRecord.setHealthRecordImgUrl(imageUrl);
                 healthRecord.setPublicId(publicId);
 
 
-
-//
-//                petDogImage.setPetDogImageUrl(imageUrl);
-//                petDogImage.setPublicId(publicId);
-//
-
-
-
-
-                //set the PetDog to the PetDogImage
-//                petDogImage.setPetDog(petDog);
-
                 healthRecord.setTreatmentRequest(treatmentRequest);
 
+                healthRecordRepo.save(healthRecord);
 
 
-
-//                petDogImages.add(petDogImage);
 
                 healthRecordList.add(healthRecord);
 
@@ -82,13 +74,11 @@ public class HealthRecordServiceImpl implements HealthRecordService {
 
         }
 
-//        petDog.setImages(petDogImages);
-//        petDogRepo.save(petDog);
 
-//
+//        treatmentRequest.setHealthRecords(healthRecordList);
 
-        treatmentRequest.setHealthRecords(healthRecordList);
-        treatmentRequestRepo.save(treatmentRequest);
+
+//        treatmentRequestRepo.save(treatmentRequest);
 
 
 

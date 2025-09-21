@@ -92,15 +92,39 @@ public class TreatmentRequestController {
         return new ResponseEntity<>(new ApiResponse(200, "ok", treatmentRequestDTO), HttpStatus.OK);
     }
 
+
+
+
+
+
     @GetMapping("/requestsByUserId/{userId}")
     public ResponseEntity<ApiResponse> getAllRequestsBelongToUser(@PathVariable int userId) {
 
         //Code goes here
 
+
+    /*
         List<TreatmentRequestDTO> treatmentRequestDTOList = treatmentRequestService.getAllTreatmentRequestsByUserId(userId);
 
-        return new ResponseEntity<>(new ApiResponse(200, "ok", treatmentRequestDTOList), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse(200, "ok", treatmentRequestDTOList), HttpStatus.OK);*/
+
+        return  ResponseEntity.ok(
+                new ApiResponse( HttpStatus.OK.value(), "ok", treatmentRequestService.getAllTreatmentRequestsByUserId(userId))
+        );
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
 
     @PutMapping("/UpdateRequest")
     public ResponseEntity<ApiResponse> updateRequest(@RequestBody TreatmentRequestDTO treatmentRequestDTO) {
