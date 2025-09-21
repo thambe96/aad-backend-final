@@ -28,12 +28,14 @@ The project is built using **Spring Boot (backend)** and a **Bootstrap/jQuery fr
 
 
 
+### 1. Admin Dashboard
+![Admin Dashboard](assets/admin-dashboard.png)
+
 ### 2. Admin – Verify Requests Feature
-
-
+![Verify Requests](assets/admin-verify-request.png)
 
 ### 3. Create Treatment Request (Pet Owner)
-
+![Create Treatment Request](assets/create-treatment-request.png)
 
 
 ---
