@@ -2,6 +2,7 @@ package edu.lk.ijse.gdse.aad.aadBackendFinal.controller;
 
 
 import edu.lk.ijse.gdse.aad.aadBackendFinal.dto.ApiResponse;
+import edu.lk.ijse.gdse.aad.aadBackendFinal.dto.HealthRecordDTO;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.service.HealthRecordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,42 @@ public class HealthRecordController {
 
         return ResponseEntity.ok(new ApiResponse(HttpStatus.OK.value(), "All users", result));
 
-
     }
+
+
+
+
+
+    @GetMapping("/getHealthRecorImages/{treatmentReqId}")
+    public ResponseEntity<ApiResponse> getHealthRecordImages(@PathVariable Integer treatmentReqId) {
+
+        //code goes here
+
+
+        System.out.println("hits  controller!!!");
+
+        List<HealthRecordDTO> healthRecordImageDtos = healthRecordService.getAllHealthRecords(treatmentReqId);
+
+
+
+        return ResponseEntity.ok(new ApiResponse(HttpStatus.OK.value(), "All health records", healthRecordImageDtos/*healthRecordImageDtos*/));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

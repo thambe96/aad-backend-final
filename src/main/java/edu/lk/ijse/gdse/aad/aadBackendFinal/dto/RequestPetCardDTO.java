@@ -19,7 +19,4 @@ public class RequestPetCardDTO {
     private String petName;
 
 
-
-
-
 }

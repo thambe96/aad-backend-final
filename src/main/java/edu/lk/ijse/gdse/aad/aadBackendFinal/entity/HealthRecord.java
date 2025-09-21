@@ -1,5 +1,6 @@
 package edu.lk.ijse.gdse.aad.aadBackendFinal.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +35,7 @@ public class HealthRecord {
 
     @ManyToOne
     @JoinColumn(name = "treatment_req_id")
+    @JsonBackReference("treatment-req-health-record")
     private TreatmentRequest treatmentRequest;
 
 

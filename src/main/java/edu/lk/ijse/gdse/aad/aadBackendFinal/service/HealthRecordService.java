@@ -1,5 +1,6 @@
 package edu.lk.ijse.gdse.aad.aadBackendFinal.service;
 
+import edu.lk.ijse.gdse.aad.aadBackendFinal.dto.HealthRecordDTO;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.HealthRecord;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,6 +10,8 @@ public interface HealthRecordService {
 
 
     String uploadHealthRecords(int treatmentReqId, List<MultipartFile> healthRecords);
+
+    List<HealthRecordDTO> getAllHealthRecords(int treatmentReqId);
 
 
 

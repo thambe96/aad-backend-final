@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class TreatmentRequest {
 
     @OneToMany(mappedBy = "treatmentRequest", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonBackReference("treatmentReq-health-record")
+    @ToString.Exclude
     private List<HealthRecord> healthRecords;
 
 

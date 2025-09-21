@@ -1,6 +1,7 @@
 package edu.lk.ijse.gdse.aad.aadBackendFinal.service.impl;
 
 
+import edu.lk.ijse.gdse.aad.aadBackendFinal.dto.HealthRecordDTO;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.HealthRecord;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.PetDogImage;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.TreatmentRequest;
@@ -84,4 +85,37 @@ public class HealthRecordServiceImpl implements HealthRecordService {
 
         return "Successfully uploaded health records";
     }
+
+    @Override
+    public List<HealthRecordDTO> getAllHealthRecords(int treatmentReqId) {
+
+        System.out.println("hists the service layer!!");
+
+        List<HealthRecord> healthRecordImagesList = healthRecordRepo.getAllHealthRecordImagesFromTreatmentId(treatmentReqId);
+
+        System.out.println("Health Record Image List :: " + healthRecordImagesList);
+
+
+
+
+        List<HealthRecordDTO> healthRecordDTOList = new ArrayList<>();
+
+        for (HealthRecord healthRecordImage : healthRecordImagesList) {
+
+            HealthRecordDTO healthRecordDTO = new HealthRecordDTO();
+            healthRecordDTO.setHealthRecordImgUrl(healthRecordImage.getHealthRecordImgUrl());
+            healthRecordDTO.setPublicId(healthRecordImage.getPublicId());
+            healthRecordDTO.setTreatmentRequest(healthRecordImage.getTreatmentRequest());
+            healthRecordDTOList.add(healthRecordDTO);
+
+        }
+
+
+
+        return healthRecordDTOList;
+    }
+
+
+
+
 }

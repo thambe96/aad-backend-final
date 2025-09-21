@@ -151,6 +151,7 @@ public class TreatmentRequestController {
         return  ResponseEntity.ok(
                 new ApiResponse( HttpStatus.OK.value(), "ok", treatmentRequestService.getAllTreatmentRequests())
         );
+
     }
 
 

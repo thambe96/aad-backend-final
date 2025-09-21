@@ -20,4 +20,7 @@ public interface TreatmentRequestService {
     List<RequestPetCardDTO> getAllTreatmentRequests();
 
 
+
+
+
 }
