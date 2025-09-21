@@ -3,9 +3,11 @@ package edu.lk.ijse.gdse.aad.aadBackendFinal.repo;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.dto.RequestPetCardDTO;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.TreatmentRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -55,6 +57,12 @@ public interface TreatmentRequestRepo extends JpaRepository<TreatmentRequest, In
             nativeQuery = true)
     List<Object[]> getAllTreatmentRequests();
 
+
+
+    @Modifying
+    @Transactional
+    @Query(value = "update treatment_request set request_status= :status where request_id= :requestId", nativeQuery = true)
+    int updateTreatmentRequestStatus(@Param("requestId") int requestId, @Param("status") String status);
 
 
 

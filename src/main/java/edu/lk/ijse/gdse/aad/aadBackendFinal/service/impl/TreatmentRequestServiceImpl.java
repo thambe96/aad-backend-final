@@ -193,15 +193,20 @@ public class TreatmentRequestServiceImpl implements TreatmentRequestService {
         return allRequestDtos;
     }
 
+    @Override
+    public String updateRequestStatus(int requestId, String status) {
+
+        int result = treatmentRequestRepo.updateTreatmentRequestStatus(requestId, status);
+
+        String res = "fail";
+
+        if (result>0) {
+            res = "success";
+        }
 
 
-
-
-
-
-
-
-
+        return res;
+    }
 
 
 }

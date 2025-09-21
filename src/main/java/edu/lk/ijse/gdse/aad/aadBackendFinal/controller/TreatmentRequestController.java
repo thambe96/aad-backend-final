@@ -154,6 +154,17 @@ public class TreatmentRequestController {
 
     }
 
+    @PutMapping("/changeStatus/{requestId}")
+    public ResponseEntity<ApiResponse> changeStatus(@PathVariable int requestId, @RequestParam String status) {
+
+        String result = treatmentRequestService.updateRequestStatus(requestId, status);
+
+//        String result = "success";
+
+        return ResponseEntity.ok(
+                new ApiResponse( HttpStatus.OK.value(), "Request status Updated!", result));
+    }
+
 
 
 

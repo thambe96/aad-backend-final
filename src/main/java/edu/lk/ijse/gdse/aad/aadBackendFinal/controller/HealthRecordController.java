@@ -43,7 +43,7 @@ public class HealthRecordController {
         //code goes here
 
 
-        System.out.println("hits  controller!!!");
+//        System.out.println("hits  controller!!!");
 
         List<HealthRecordDTO> healthRecordImageDtos = healthRecordService.getAllHealthRecords(treatmentReqId);
 
