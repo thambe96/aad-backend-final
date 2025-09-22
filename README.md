@@ -29,13 +29,37 @@ The project is built using **Spring Boot (backend)** and a **Bootstrap/jQuery fr
 
 
 ### 1. Admin Dashboard
-![Admin Dashboard](assets/admin-dashboard.png)
+![Admin Dashboard](assets/admin dashboard.png)
 
 ### 2. Admin – Verify Requests Feature
-![Verify Requests](assets/admin-verify-request.png)
+![Verify Requests](assets/admin feature to verity request.png)
 
 ### 3. Create Treatment Request (Pet Owner)
-![Create Treatment Request](assets/create-treatment-request.png)
+![Create Treatment Request](assets/creating the treatment request.png)
+
+### 4. Pet-Owner Dashboard (Pet Owner)
+![Pet owner dashboard](assets/pet owner dashboard.png)
+
+
+### 5. Create New Pet (Pet Owner)
+![Create New Pet](assets/registering the pet.png)
+
+
+### 6. Sponsor Dashboard (Sponsor)
+![Sponsor dashboard](assets/sponsor dashboard.png)
+
+
+### 7. Make the Donation using visa card (Sponsor)
+![Make Donation](assets/selecting payment card.png)
+
+
+
+
+
+
+
+
+
 
 
 ---
@@ -93,7 +117,7 @@ The project is built using **Spring Boot (backend)** and a **Bootstrap/jQuery fr
 ### 🔹 Authentication & Roles
 
 - **Login/Register** via `/api/v1/auth` endpoints.
-- Roles: `PET_OWNER`, `ADMIN`.
+- Roles: `PET_OWNER`, `ADMIN` , `SPONSOR`.
 - Use the JWT token from login response for authenticated requests.
 
 ---
@@ -107,8 +131,12 @@ The project is built using **Spring Boot (backend)** and a **Bootstrap/jQuery fr
 - Admins:
   - View all treatment requests.
   - Verify and change request statuses.
+- Sponsor:
+    - View verified treatment requests.
+    - Make Donations.  
 - Dynamic UI with Bootstrap and jQuery.
-- Image upload support for pets and health records.
+- Image upload support for pets and health records with Cloudinary.
+- Stripe payment gateway 
 - JWT-based secure authentication.
 
 ---
@@ -118,6 +146,7 @@ The project is built using **Spring Boot (backend)** and a **Bootstrap/jQuery fr
 - **Backend:** Spring Boot, Spring Security (JWT), Hibernate, MySQL
 - **Frontend:** HTML, Bootstrap, jQuery, AJAX
 - **Cloud:** Cloudinary (for image storage)
+- **Payment Gateway:** Stripe (for payment transaction handling)
 
 ---
 
@@ -125,7 +154,8 @@ The project is built using **Spring Boot (backend)** and a **Bootstrap/jQuery fr
 
 - **Kasun** – Admin features
 - **Siril** – Pet owner features
-- **You** – Full-stack developer (integration and enhancements)
+- **Anupama** – Sponsor
+- **Oshadha Thambavita** – Full-stack developer (integration and enhancements)
 
 ---
 
