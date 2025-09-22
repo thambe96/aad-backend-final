@@ -53,9 +53,26 @@ public interface TreatmentRequestRepo extends JpaRepository<TreatmentRequest, In
             "join pet_dog " +
             "on pet_dog.dog_id = treatment_request.dog_id " +
             "join pet_dog_image " +
-            "on pet_dog.dog_id = pet_dog_image.dog_id ",
+            "on pet_dog.dog_id = pet_dog_image.dog_id  where treatment_request.request_status='OPEN'",
             nativeQuery = true)
-    List<Object[]> getAllTreatmentRequests();
+    List<Object[]> getAllTreatmentRequestsForSponsor();
+
+
+    @Query(value = "select " +
+            "treatment_request.*," +
+            "pet_dog_image.pet_dog_image_url," +
+            "pet_dog.dog_name " +
+            "from treatment_request " +
+            "join pet_dog " +
+            "on pet_dog.dog_id = treatment_request.dog_id " +
+            "join pet_dog_image " +
+            "on pet_dog.dog_id = pet_dog_image.dog_id",
+            nativeQuery = true)
+    List<Object[]> getAllTreatmentRequestsForAdmin();
+
+
+
+
 
 
 

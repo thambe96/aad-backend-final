@@ -17,9 +17,11 @@ public interface TreatmentRequestService {
     String updateTreatmentRequest(TreatmentRequestDTO treatmentRequestDTO);
     String deleteTreatmentRequest(int requestId);
 
-    List<RequestPetCardDTO> getAllTreatmentRequests();
+    List<RequestPetCardDTO> getAllTreatmentRequestsForSponsor();
 
     String updateRequestStatus(int requestId, String status);
+
+    List<RequestPetCardDTO> getAllTreatmentRequestsForAdmin();
 
 
 

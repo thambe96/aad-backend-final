@@ -159,11 +159,11 @@ public class TreatmentRequestServiceImpl implements TreatmentRequestService {
     }
 
     @Override
-    public List<RequestPetCardDTO> getAllTreatmentRequests() {
+    public List<RequestPetCardDTO> getAllTreatmentRequestsForSponsor() {
 
 //        List<TreatmentRequest> treatmentRequests = treatmentRequestRepo.findAll();
 
-        List<Object[]> results = treatmentRequestRepo.getAllTreatmentRequests();
+        List<Object[]> results = treatmentRequestRepo.getAllTreatmentRequestsForSponsor();
 
 
         List<RequestPetCardDTO> allRequestDtos = results.stream().map(r ->
@@ -192,6 +192,55 @@ public class TreatmentRequestServiceImpl implements TreatmentRequestService {
 
         return allRequestDtos;
     }
+
+
+
+
+
+
+    @Override
+    public List<RequestPetCardDTO> getAllTreatmentRequestsForAdmin() {
+
+//        List<TreatmentRequest> treatmentRequests = treatmentRequestRepo.findAll();
+
+        List<Object[]> results = treatmentRequestRepo.getAllTreatmentRequestsForAdmin();
+
+
+        List<RequestPetCardDTO> allRequestDtos = results.stream().map(r ->
+                new RequestPetCardDTO(
+                        (Integer) r[0],
+                        (String) r[1],
+                        (Double) r[2],
+                        (String) r[3],
+                        (Double) r[4],
+                        (Integer) r[5],
+                        (String) r[6],
+                        (String) r[7],
+                        (String) r[8])).toList();
+
+
+
+/*
+        for (RequestPetCardDTO dto : dtos) {
+            System.out.println(dto.getRequestName());
+            System.out.println(dto.getRequestStatus());
+            System.out.println(dto.getRequestId());
+            System.out.println(dto.getPetImageUrl());
+        }
+        */
+
+
+        return allRequestDtos;
+    }
+
+
+
+
+
+
+
+
+
 
     @Override
     public String updateRequestStatus(int requestId, String status) {

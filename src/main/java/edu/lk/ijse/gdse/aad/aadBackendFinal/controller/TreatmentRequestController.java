@@ -146,13 +146,33 @@ public class TreatmentRequestController {
 
 
     @GetMapping("/getAllRequests")
-    public ResponseEntity<ApiResponse> getAllRequests() {
+    public ResponseEntity<ApiResponse> getAllRequestsForSponsor() {
 
         return  ResponseEntity.ok(
-                new ApiResponse( HttpStatus.OK.value(), "ok", treatmentRequestService.getAllTreatmentRequests())
+                new ApiResponse( HttpStatus.OK.value(), "ok", treatmentRequestService.getAllTreatmentRequestsForSponsor())
         );
 
     }
+
+
+
+
+
+
+    @GetMapping("/getAllRequestsForAdmin")
+    public ResponseEntity<ApiResponse> getAllRequestsForAdmin() {
+
+        return  ResponseEntity.ok(
+                new ApiResponse( HttpStatus.OK.value(), "ok", treatmentRequestService.getAllTreatmentRequestsForAdmin())
+        );
+
+    }
+
+
+
+
+
+
 
     @PutMapping("/changeStatus/{requestId}")
     public ResponseEntity<ApiResponse> changeStatus(@PathVariable int requestId, @RequestParam String status) {

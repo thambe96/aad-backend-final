@@ -7,6 +7,7 @@ import edu.lk.ijse.gdse.aad.aadBackendFinal.entity.TreatmentRequest;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.repo.DonationRepo;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.repo.TreatmentRequestRepo;
 import edu.lk.ijse.gdse.aad.aadBackendFinal.service.DonationService;
+import edu.lk.ijse.gdse.aad.aadBackendFinal.service.MailService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -22,6 +23,7 @@ public class DonationServiceImpl implements DonationService {
     private final DonationRepo donationRepo;
     private final ModelMapper modelMapper;
     private final TreatmentRequestRepo treatmentRequestRepo;
+    private final MailService mailService;
 
 
     @Transactional
@@ -52,6 +54,19 @@ public class DonationServiceImpl implements DonationService {
 
             treatmentRequestRepo.save(treatmentRequest);
             donationRepo.save(modelMapper.map(donationDTO, Donation.class));
+
+
+            //send acknoledgment saying the donation received
+
+
+            String userMail = donationDTO.getDonator().getEmail();
+
+
+
+            mailService.sendDonationAcknowledgement(userMail);
+
+
+
             return "Donation Recorded Successfully";
         }
 
@@ -74,7 +89,8 @@ public class DonationServiceImpl implements DonationService {
                     donation.getAmount(),
                     donation.getDate(),
                     donation.getDonator(),
-                    donation.getTreatmentRequest()
+                    donation.getTreatmentRequest(),
+                    donation.getPayment()
 
             );
             donationDTOs.add(donationDTO);
